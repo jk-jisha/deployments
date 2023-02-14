@@ -1,29 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "helm-guestbook.fullname" . }}
+  name: helm-jenkinstest
   labels:
-    app: {{ template "helm-guestbook.name" . }}
-    chart: {{ template "helm-guestbook.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: helm-jenkinstest
+    chart: helm-jenkinstest
 spec:
-  replicas: {{ .Values.replicaCount }}
-  revisionHistoryLimit: 3
+  replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: {{ template "helm-guestbook.name" . }}
-      release: {{ .Release.Name }}
+      app: helm-jenkinstest
   template:
     metadata:
       labels:
-        app: {{ template "helm-guestbook.name" . }}
-        release: {{ .Release.Name }}
+        app: helm-jenkinstest
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: helm-jenkinstest
+          image: registry.hub.docker.com/jkjisha/jenkinstest:3
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 80
@@ -37,16 +33,9 @@ spec:
               path: /
               port: http
           resources:
-{{ toYaml .Values.resources | indent 12 }}
-    {{- with .Values.nodeSelector }}
-      nodeSelector:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.affinity }}
-      affinity:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-      tolerations:
-{{ toYaml . | indent 8 }}
-    {{- end }}
+            limits:
+              memory: 3056Mi
+            requests:
+              memory: 2028Mi
+          affinity: {}
+          tolerations: {}
