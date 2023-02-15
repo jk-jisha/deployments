@@ -18,9 +18,9 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  path: /
+  path: /nginxapp
   hosts:
-    - chart-example.local
+    - imageupdate
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
