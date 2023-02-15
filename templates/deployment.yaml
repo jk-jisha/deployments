@@ -24,18 +24,10 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
             limits:
-              memory: 3056Mi
+              memory: 1056Mi
             requests:
-              memory: 2028Mi
+              memory: 1028Mi
           affinity: {}
           tolerations: {}
