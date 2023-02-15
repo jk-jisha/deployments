@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: registry.hub.docker.com/jkjisha/jenkinstest
+  repository: registry.hub.docker.com/jkjisha/mynginx_image1
   tag: 3
   pullPolicy: IfNotPresent
 
