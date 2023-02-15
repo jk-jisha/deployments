@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: registry.hub.docker.com/jkjisha/mynginx_image1
-  tag: 3
+  tag: v1-release
   pullPolicy: IfNotPresent
 
 service:
